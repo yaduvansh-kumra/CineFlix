@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Sign in to the CineFlix frontend demonstration."
+  >
+
+  <title>Sign In | CineFlix</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Shared CSS -->
+  <link
+    rel="stylesheet"
+    href="../css/style.css"
+  >
+
+  <!-- Login page specific CSS -->
+  <link
+    rel="stylesheet"
+    href="../css/login.css"
+  >
+</head>
+
+<body class="login-page">
+  <!-- =====================================================
+       Login Header
+       ===================================================== -->
+  <header class="login-header">
+    <a
+      href="../index.html"
+      class="brand-logo"
+      aria-label="Return to CineFlix home"
+    >
+      CineFlix
+    </a>
+  </header>
+
+  <main class="login-container">
+    <!-- =====================================================
+         Login Form
+         ===================================================== -->
+    <form class="login-card">
+      <h1>
+        Sign In
+      </h1>
+
+      <label for="email">
+        Email or mobile number
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">
+        Password
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button
+        class="login-submit"
+        type="submit"
+      >
+        Sign In
+      </button>
+
+      <p
+        class="form-message"
+        aria-live="polite"
+      ></p>
+
+      <div class="login-options">
+        <label>
+          <input type="checkbox">
+
+          Remember me
+        </label>
+
+        <a href="#">
+          Need help?
+        </a>
+      </div>
+
+      <p class="signup-text">
+        New to CineFlix?
+
+        <a href="#">
+          Sign up now.
+        </a>
+      </p>
+
+      <p class="login-note">
+        This is a frontend academic demonstration.
+        No real account is created.
+      </p>
+    </form>
+  </main>
+
+  <!-- Shared JavaScript -->
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Watch movies and shows on CineFlix video player.">
+  <title>Watch Video | CineFlix</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Watch page specific CSS -->
+  <link rel="stylesheet" href="../css/watch.css">
+</head>
+
+<body class="watch-page">
+  <!-- Top Navigation Header -->
+  <header class="watch-header">
+    <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
+      CINEFLIX
+    </a>
+
+    <a href="details.html?title=Interstellar" class="back-to-details">
+      ← Back to Details
+    </a>
+  </header>
+
+  <!-- Main Video Player Container -->
+  <main class="watch-main">
+    <div class="player-wrapper">
+      <!-- HTML5 Video Player playing demo.mp4 -->
+      <video id="main-video-player" playsinline preload="auto">
+        <source src="../assets/videos/demo.mp4" type="video/mp4">
+        Your browser does not support HTML5 video playback.
+      </video>
+
+      <!-- Center Big Play Button -->
+      <button id="center-play-btn" class="player-center-btn" type="button" aria-label="Play video">
+        ▶
+      </button>
+
+      <!-- Custom Overlay Controls -->
+      <div class="player-overlay">
+        <div class="player-top-bar">
+          <h2 id="player-movie-title" class="player-movie-title">Interstellar</h2>
+          <span class="player-badge">4K ULTRA HD</span>
+        </div>
+
+        <div class="player-bottom-bar">
+          <!-- Progress Bar / Scrubber -->
+          <div id="progress-container" class="progress-container" aria-label="Video seek bar">
+            <div id="progress-filled" class="progress-filled"></div>
+          </div>
+
+          <!-- Controls Row -->
+          <div class="controls-row">
+            <div class="controls-left">
+              <button id="btn-play-pause" class="ctrl-btn" type="button" aria-label="Play / Pause">
+                ▶
+              </button>
+
+              <div class="volume-wrapper">
+                <button id="btn-mute" class="ctrl-btn" type="button" aria-label="Mute / Unmute">
+                  🔊
+                </button>
+                <input id="volume-slider" class="volume-slider" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume slider">
+              </div>
+
+              <span class="time-display">
+                <span id="time-current">00:00</span> / <span id="time-total">00:00</span>
+              </span>
+            </div>
+
+            <div class="controls-right">
+              <button id="btn-fullscreen" class="ctrl-btn" type="button" aria-label="Toggle Fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Details Below Player -->
+    <section class="watch-info">
+      <h1 id="watch-title">Interstellar</h1>
+      <div class="watch-meta-row">
+        <span class="match-score">98% Match</span>
+        <span>2014</span>
+        <span class="age-rating">U/A 13+</span>
+        <span>2h 49m</span>
+        <span class="hd-badge">Dolby Atmos</span>
+      </div>
+      <p id="watch-desc" class="watch-desc">
+        Enjoy full high definition streaming playback on CineFlix. Use on-screen controls to scrub through the video, adjust volume, or expand into full-screen theater mode.
+      </p>
+    </section>
+  </main>
+
+  <!-- Shared JavaScript -->
+  <script src="../js/app.js"></script>
+</body>
+</html>

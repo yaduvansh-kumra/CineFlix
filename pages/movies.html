@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse movies on CineFlix - Action, Sci-Fi, Drama, Thriller, and more.">
+  <title>Movies | CineFlix</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <!-- Header and Navigation -->
+  <header id="main-header" class="primary-header scrolled">
+    <div class="header-left">
+      <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
+        CINEFLIX
+      </a>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="tv-shows.html">TV Shows</a></li>
+          <li><a href="movies.html" class="active" aria-current="page">Movies</a></li>
+          <li><a href="new-popular.html">New &amp; Popular</a></li>
+          <li><a href="my-list.html">My List</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <label class="search-box" for="movie-search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="movie-search" type="search" placeholder="Search movies..." autocomplete="off">
+      </label>
+
+      <a href="login.html" class="btn-login">Sign In</a>
+
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main class="browse-page">
+    <!-- Movies Hero Banner -->
+    <section class="browse-hero">
+      <p class="hero-kicker">CINEMATIC CATALOG</p>
+      <h1>FEATURE FILMS &amp; MOVIES</h1>
+      <p>
+        Explore critically acclaimed blockbusters, award-winning sci-fi epics, intense thrillers, and indie masterpieces.
+      </p>
+    </section>
+
+    <!-- Empty search message -->
+    <p id="search-empty" class="search-empty" hidden>No movies found matching your search term.</p>
+
+    <!-- Movies Catalog Grid -->
+    <section class="media-section browse-grid-section">
+      <div class="section-heading">
+        <h2 class="section-title">All Movies (16 Titles)</h2>
+      </div>
+
+      <div class="movie-grid">
+        <!-- 1. Interstellar -->
+        <article class="media-card" data-title="Interstellar" data-category="sci-fi adventure drama">
+          <a href="details.html?title=Interstellar" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.7</span>
+              <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Interstellar poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Interstellar</h3>
+              <div class="media-meta">
+                <span class="match-score">98% Match</span>
+                <span class="age-rating">U/A 13+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Sci-Fi</li>
+                <li>Adventure</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Interstellar" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Interstellar">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 2. Neon Horizon -->
+        <article class="media-card" data-title="Neon Horizon" data-category="action sci-fi cyberpunk">
+          <a href="details.html?title=Neon%20Horizon" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.5</span>
+              <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Neon Horizon poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Neon Horizon</h3>
+              <div class="media-meta">
+                <span class="match-score">97% Match</span>
+                <span class="age-rating">A 18+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Action</li>
+                <li>Cyberpunk</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Neon%20Horizon" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Neon Horizon">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 3. Shadow Protocol -->
+        <article class="media-card" data-title="Shadow Protocol" data-category="spy action thriller">
+          <a href="details.html?title=Shadow%20Protocol" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.8</span>
+              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Shadow Protocol poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Shadow Protocol</h3>
+              <div class="media-meta">
+                <span class="match-score">96% Match</span>
+                <span class="age-rating">U/A 16+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Spy</li>
+                <li>Action</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Shadow%20Protocol" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Shadow Protocol">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 4. Red Orbit -->
+        <article class="media-card" data-title="Red Orbit" data-category="sci-fi space adventure">
+          <a href="details.html?title=Red%20Orbit" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.2</span>
+              <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=600&q=80" alt="Red Orbit poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Red Orbit</h3>
+              <div class="media-meta">
+                <span class="match-score">93% Match</span>
+                <span class="age-rating">U/A 13+</span>
+                <span class="hd-badge">HD</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Space</li>
+                <li>Adventure</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Red%20Orbit" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Red Orbit">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 5. Quantum Realm -->
+        <article class="media-card" data-title="Quantum Realm" data-category="sci-fi action">
+          <a href="details.html?title=Quantum%20Realm" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.6</span>
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Quantum Realm poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Quantum Realm</h3>
+              <div class="media-meta">
+                <span class="match-score">94% Match</span>
+                <span class="age-rating">U/A 13+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Quantum</li>
+                <li>Sci-Fi</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Quantum%20Realm" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Quantum Realm">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 6. Dark Velocity -->
+        <article class="media-card" data-title="Dark Velocity" data-category="action racing thriller">
+          <a href="details.html?title=Dark%20Velocity" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.1</span>
+              <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Dark Velocity poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Dark Velocity</h3>
+              <div class="media-meta">
+                <span class="match-score">92% Match</span>
+                <span class="age-rating">U/A 16+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Racing</li>
+                <li>Action</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Dark%20Velocity" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Dark Velocity">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 7. Dragon Blade -->
+        <article class="media-card" data-title="Dragon Blade" data-category="fantasy action epic">
+          <a href="details.html?title=Dragon%20Blade" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.3</span>
+              <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?auto=format&fit=crop&w=600&q=80" alt="Dragon Blade poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Dragon Blade</h3>
+              <div class="media-meta">
+                <span class="match-score">91% Match</span>
+                <span class="age-rating">U/A 16+</span>
+                <span class="hd-badge">HD</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Fantasy</li>
+                <li>Action</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Dragon%20Blade" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Dragon Blade">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 8. Mind Hunter -->
+        <article class="media-card" data-title="Mind Hunter" data-category="crime psychological mystery">
+          <a href="details.html?title=Mind%20Hunter" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.9</span>
+              <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80" alt="Mind Hunter poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Mind Hunter</h3>
+              <div class="media-meta">
+                <span class="match-score">96% Match</span>
+                <span class="age-rating">A 18+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Crime</li>
+                <li>Mystery</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Mind%20Hunter" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Mind Hunter">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 9. Midnight Sun -->
+        <article class="media-card" data-title="Midnight Sun" data-category="drama thriller noir">
+          <a href="details.html?title=Midnight%20Sun" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.0</span>
+              <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" alt="Midnight Sun poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Midnight Sun</h3>
+              <div class="media-meta">
+                <span class="match-score">90% Match</span>
+                <span class="age-rating">U/A 13+</span>
+                <span class="hd-badge">HD</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Drama</li>
+                <li>Thriller</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Midnight%20Sun" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Midnight Sun">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 10. Chrono Rift -->
+        <article class="media-card" data-title="Chrono Rift" data-category="sci-fi time-travel action">
+          <a href="details.html?title=Chrono%20Rift" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.8</span>
+              <img src="https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=600&q=80" alt="Chrono Rift poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Chrono Rift</h3>
+              <div class="media-meta">
+                <span class="match-score">97% Match</span>
+                <span class="age-rating">U/A 16+</span>
+                <span class="hd-badge">4K</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Time Travel</li>
+                <li>Sci-Fi</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Chrono%20Rift" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Chrono Rift">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 11. Ghost in the Void -->
+        <article class="media-card" data-title="Ghost in the Void" data-category="anime sci-fi action">
+          <a href="details.html?title=Ghost%20in%20the%20Void" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.4</span>
+              <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80" alt="Ghost in the Void poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Ghost in the Void</h3>
+              <div class="media-meta">
+                <span class="match-score">94% Match</span>
+                <span class="age-rating">U/A 16+</span>
+                <span class="hd-badge">HD</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Anime</li>
+                <li>Action</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Ghost%20in%20the%20Void" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Ghost in the Void">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- 12. Rebel Station -->
+        <article class="media-card" data-title="Rebel Station" data-category="action space sci-fi">
+          <a href="details.html?title=Rebel%20Station" class="media-link">
+            <figure class="media-poster">
+              <span class="media-badge-top">★ 8.3</span>
+              <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=600&q=80" alt="Rebel Station poster" loading="lazy">
+            </figure>
+            <div class="media-info">
+              <h3 class="media-title">Rebel Station</h3>
+              <div class="media-meta">
+                <span class="match-score">93% Match</span>
+                <span class="age-rating">U/A 13+</span>
+                <span class="hd-badge">HD</span>
+              </div>
+              <ul class="genre-tags">
+                <li>Space</li>
+                <li>Action</li>
+              </ul>
+              <div class="card-quick-actions">
+                <a href="watch.html?title=Rebel%20Station" class="btn-card-play">▶ Play</a>
+                <button class="btn-card-list" type="button" data-title="Rebel Station">+</button>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="primary-footer">
+    <div class="footer-links">
+      <div class="footer-col">
+        <h3>Browse</h3>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Shows</a></li>
+          <li><a href="new-popular.html">New &amp; Popular</a></li>
+          <li><a href="my-list.html">My List</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Help &amp; Account</h3>
+        <ul>
+          <li><a href="login.html">Sign In</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Devices</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>About</h3>
+        <ul>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Preferences</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 CineFlix Movie Catalog.</p>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="../js/app.js"></script>
+</body>
+</html>
