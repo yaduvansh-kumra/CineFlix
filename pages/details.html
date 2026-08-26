@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Movie details and streaming overview on CineFlix.">
+  <title>Movie Details | CineFlix</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <!-- Header and Navigation -->
+  <header id="main-header" class="primary-header scrolled">
+    <div class="header-left">
+      <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
+        CINEFLIX
+      </a>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="tv-shows.html">TV Shows</a></li>
+          <li><a href="movies.html" class="active">Movies</a></li>
+          <li><a href="new-popular.html">New &amp; Popular</a></li>
+          <li><a href="my-list.html">My List</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <button id="theme-toggle" class="icon-button theme-button" type="button" aria-label="Switch theme">☼</button>
+      <a href="login.html" class="btn-login">Sign In</a>
+
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main class="details-page">
+    <!-- Movie Details Backdrop -->
+    <section class="details-backdrop">
+      <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1600&q=80" alt="Backdrop image">
+      <div class="details-overlay"></div>
+    </section>
+
+    <!-- Movie Details Content -->
+    <section class="details-content">
+      <a href="../index.html" class="back-link">
+        ← Back to Home
+      </a>
+
+      <p class="hero-kicker">CineFlix Original Spotlight</p>
+
+      <h1>Interstellar</h1>
+
+      <div class="hero-meta">
+        <span class="match-score">98% Match</span>
+        <span class="rating-badge">★ 8.7</span>
+        <span>2014</span>
+        <span class="age-rating">U/A 13+</span>
+        <span>2h 49m</span>
+        <span class="hd-badge">4K Ultra HD</span>
+      </div>
+
+      <p class="details-description">
+        When Earth becomes uninhabitable, a former NASA pilot joins a mission through a newly discovered wormhole. The crew must find a planet capable of becoming humanity's new home before time runs out.
+      </p>
+
+      <div class="hero-actions">
+        <a href="watch.html?title=Interstellar" class="btn btn-primary">
+          <span aria-hidden="true">▶</span> Play Now
+        </a>
+
+        <button class="btn btn-secondary list-button" type="button" data-title="Interstellar">
+          + My List
+        </button>
+      </div>
+
+      <div class="details-information">
+        <p><strong>Cast:</strong> Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine</p>
+        <p><strong>Genres:</strong> Science Fiction, Adventure, Drama</p>
+        <p><strong>Director:</strong> Christopher Nolan</p>
+        <p><strong>Audio &amp; Subtitles:</strong> English [Original], Hindi, French, Spanish</p>
+      </div>
+    </section>
+
+    <!-- More Like This (10 Recommended Movies) -->
+    <section class="media-section more-like-this" aria-labelledby="more-like-this-title">
+      <div class="section-heading">
+        <h2 id="more-like-this-title" class="section-title">More Like This</h2>
+      </div>
+
+      <div class="scroller-wrapper">
+        <div class="media-scroller">
+          <!-- 1. Neon Horizon -->
+          <article class="media-card" data-title="Neon Horizon">
+            <a href="details.html?title=Neon%20Horizon" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.5</span>
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Neon Horizon poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Neon Horizon</h3>
+                <div class="media-meta">
+                  <span class="match-score">97% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Neon%20Horizon" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Neon Horizon">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 2. The Last Signal -->
+          <article class="media-card" data-title="The Last Signal">
+            <a href="details.html?title=The%20Last%20Signal" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.4</span>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="The Last Signal poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">The Last Signal</h3>
+                <div class="media-meta">
+                  <span class="match-score">95% Match</span>
+                  <span class="hd-badge">HD</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=The%20Last%20Signal" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="The Last Signal">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 3. Shadow Protocol -->
+          <article class="media-card" data-title="Shadow Protocol">
+            <a href="details.html?title=Shadow%20Protocol" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.8</span>
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Shadow Protocol poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Shadow Protocol</h3>
+                <div class="media-meta">
+                  <span class="match-score">96% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Shadow%20Protocol" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Shadow Protocol">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 4. Red Orbit -->
+          <article class="media-card" data-title="Red Orbit">
+            <a href="details.html?title=Red%20Orbit" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.2</span>
+                <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=600&q=80" alt="Red Orbit poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Red Orbit</h3>
+                <div class="media-meta">
+                  <span class="match-score">93% Match</span>
+                  <span class="hd-badge">HD</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Red%20Orbit" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Red Orbit">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 5. Quantum Realm -->
+          <article class="media-card" data-title="Quantum Realm">
+            <a href="details.html?title=Quantum%20Realm" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.6</span>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Quantum Realm poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Quantum Realm</h3>
+                <div class="media-meta">
+                  <span class="match-score">94% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Quantum%20Realm" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Quantum Realm">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 6. Dark Velocity -->
+          <article class="media-card" data-title="Dark Velocity">
+            <a href="details.html?title=Dark%20Velocity" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.1</span>
+                <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Dark Velocity poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Dark Velocity</h3>
+                <div class="media-meta">
+                  <span class="match-score">92% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Dark%20Velocity" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Dark Velocity">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 7. Dragon Blade -->
+          <article class="media-card" data-title="Dragon Blade">
+            <a href="details.html?title=Dragon%20Blade" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.3</span>
+                <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?auto=format&fit=crop&w=600&q=80" alt="Dragon Blade poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Dragon Blade</h3>
+                <div class="media-meta">
+                  <span class="match-score">91% Match</span>
+                  <span class="hd-badge">HD</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Dragon%20Blade" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Dragon Blade">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 8. Mind Hunter -->
+          <article class="media-card" data-title="Mind Hunter">
+            <a href="details.html?title=Mind%20Hunter" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.9</span>
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80" alt="Mind Hunter poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Mind Hunter</h3>
+                <div class="media-meta">
+                  <span class="match-score">96% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Mind%20Hunter" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Mind Hunter">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 9. Chrono Rift -->
+          <article class="media-card" data-title="Chrono Rift">
+            <a href="details.html?title=Chrono%20Rift" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.8</span>
+                <img src="https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=600&q=80" alt="Chrono Rift poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">Chrono Rift</h3>
+                <div class="media-meta">
+                  <span class="match-score">97% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=Chrono%20Rift" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="Chrono Rift">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- 10. The Witcher's Oath -->
+          <article class="media-card" data-title="The Witcher's Oath">
+            <a href="details.html?title=The%20Witcher's%20Oath" class="media-link">
+              <figure class="media-poster">
+                <span class="media-badge-top">★ 8.7</span>
+                <img src="https://images.unsplash.com/photo-1533613220915-609f661a6fe1?auto=format&fit=crop&w=600&q=80" alt="The Witcher's Oath poster" loading="lazy">
+              </figure>
+              <div class="media-info">
+                <h3 class="media-title">The Witcher's Oath</h3>
+                <div class="media-meta">
+                  <span class="match-score">96% Match</span>
+                  <span class="hd-badge">4K</span>
+                </div>
+                <div class="card-quick-actions">
+                  <a href="watch.html?title=The%20Witcher's%20Oath" class="btn-card-play">▶ Play</a>
+                  <button class="btn-card-list" type="button" data-title="The Witcher's Oath">+</button>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="primary-footer">
+    <div class="footer-links">
+      <div class="footer-col">
+        <h3>Browse</h3>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Shows</a></li>
+          <li><a href="new-popular.html">New &amp; Popular</a></li>
+          <li><a href="my-list.html">My List</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Help &amp; Account</h3>
+        <ul>
+          <li><a href="login.html">Sign In</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Supported Devices</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Audio &amp; Subtitles</h3>
+        <ul>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Preferences</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 CineFlix Demo. All rights reserved.</p>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+/* =========================================================
+   1. Login Page Background
+   ========================================================= */
+
+.login-page {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.58),
+      rgba(0, 0, 0, 0.84)
+    ),
+    url("../assets/images/hero/interstellar-hero.webp")
+      center / cover fixed;
+}
+
+
+/* =========================================================
+   2. Login Header
+   ========================================================= */
+
+.login-header {
+  padding: 1.4rem 4.5%;
+}
+
+
+/* =========================================================
+   3. Login Layout
+   ========================================================= */
+
+.login-container {
+  width: min(450px, 90vw);
+  margin: 1rem auto 4rem;
+}
+
+
+/* =========================================================
+   4. Login Form Card
+   ========================================================= */
+
+.login-card {
+  padding: 3rem;
+
+  border-radius: 6px;
+
+  background-color: var(--header-bg);
+  color: var(--text-color);
+}
+
+.login-card h1 {
+  margin-bottom: 1.7rem;
+
+  font-size: 2rem;
+}
+
+.login-card > label {
+  display: block;
+
+  margin: 1rem 0 0.45rem;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.login-card input[type="email"],
+.login-card input[type="password"],
+.login-card input[type="text"] {
+  width: 100%;
+  padding: 0.95rem;
+
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  outline: none;
+
+  background-color: var(--bg-overlay-light);
+  color: var(--text-color);
+}
+
+.login-card input[type="email"]:focus,
+.login-card input[type="password"]:focus,
+.login-card input[type="text"]:focus {
+  border-color: var(--text-color);
+}
+
+
+/* =========================================================
+   5. Login Button
+   ========================================================= */
+
+.login-submit {
+  width: 100%;
+  margin-top: 1.7rem;
+  padding: 0.9rem;
+
+  border: 0;
+  border-radius: 4px;
+
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+
+  font-weight: 800;
+
+  transition: background-color 0.2s ease;
+}
+
+.login-submit:hover {
+  background-color: var(--primary-hover);
+}
+
+
+/* =========================================================
+   6. Form Options and Messages
+   ========================================================= */
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 0.9rem;
+
+  color: #b7b7b7;
+
+  font-size: 0.78rem;
+}
+
+.login-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.login-options a {
+  color: var(--text-dim);
+}
+
+.login-options a:hover {
+  color: var(--text-color);
+
+  text-decoration: underline;
+}
+
+.signup-text {
+  margin-top: 3rem;
+
+  color: var(--text-dim);
+}
+
+.signup-text a {
+  color: var(--text-color);
+
+  font-weight: 700;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+.login-note,
+.form-message {
+  margin-top: 1rem;
+
+  color: #b7b7b7;
+
+  font-size: 0.75rem;
+}
+
+.form-message {
+  min-height: 1.2rem;
+
+  color: #79e393;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   7. Mobile Responsive Styles
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .login-header {
+    padding: 1.25rem 5%;
+  }
+
+  .login-container {
+    margin-top: 0.5rem;
+  }
+
+  .login-card {
+    padding: 2.1rem 1.4rem;
+  }
+}
