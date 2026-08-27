@@ -1,6 +1,4 @@
-/* =========================================================
-   1. Login Page Background
-   ========================================================= */
+/* login page ka full background aur hero image set hota hai */
 
 .login-page {
   min-height: 100vh;
@@ -15,18 +13,14 @@
 }
 
 
-/* =========================================================
-   2. Login Header
-   ========================================================= */
+/* login page ka header spacing */
 
 .login-header {
   padding: 1.4rem 4.5%;
 }
 
 
-/* =========================================================
-   3. Login Layout
-   ========================================================= */
+/* form ko fixed width ke andar center mein rakhta hai */
 
 .login-container {
   width: min(450px, 90vw);
@@ -34,9 +28,7 @@
 }
 
 
-/* =========================================================
-   4. Login Form Card
-   ========================================================= */
+/* login/signup card ka background, spacing aur text styling */
 
 .login-card {
   padding: 3rem;
@@ -83,9 +75,7 @@
 }
 
 
-/* =========================================================
-   5. Login Button
-   ========================================================= */
+/* submit button poori card width leta hai */
 
 .login-submit {
   width: 100%;
@@ -108,9 +98,7 @@
 }
 
 
-/* =========================================================
-   6. Form Options and Messages
-   ========================================================= */
+/* remember option, links aur form messages ki styling */
 
 .login-options {
   display: flex;
@@ -174,9 +162,7 @@
 }
 
 
-/* =========================================================
-   7. Mobile Responsive Styles
-   ========================================================= */
+/* chhoti screen par padding aur card width adjust hoti hai */
 
 @media (max-width: 520px) {
   .login-header {

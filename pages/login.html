@@ -1,21 +1,26 @@
 <!DOCTYPE html>
+<!-- html5 standard -->
 <html lang="en">
 <head>
+  <!-- metadata head section ke liye -->
   <meta charset="UTF-8">
 
+  <!-- viewport mobile responsive design ke liye zaroori hai -->
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
+  <!-- page description jo seo mein aata hai -->
   <meta
     name="description"
     content="Sign in to the CineFlix frontend demonstration."
   >
 
+  <!-- browser tab mein jo title dikhta hai -->
   <title>Sign In | CineFlix</title>
 
-  <!-- Google Fonts -->
+  <!-- google fonts import kar rahe hain -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -24,18 +29,19 @@
     crossorigin
   >
 
+  <!-- fonts ka actual link -->
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Shared CSS -->
+  <!-- shared css file jo sab pages mein common styling hai -->
   <link
     rel="stylesheet"
     href="../css/style.css"
   >
 
-  <!-- Login page specific CSS -->
+  <!-- login page ke liye specific css -->
   <link
     rel="stylesheet"
     href="../css/login.css"
@@ -43,10 +49,9 @@
 </head>
 
 <body class="login-page">
-  <!-- =====================================================
-       Login Header
-       ===================================================== -->
+  <!-- login header jo top mein hota hai -->
   <header class="login-header">
+    <!-- home page ke liye link -->
     <a
       href="../index.html"
       class="brand-logo"
@@ -54,24 +59,26 @@
     >
       CineFlix
     </a>
+    <!-- header ke right side mein theme button -->
     <div class="header-right">
+      <!-- dark/light mode toggle button -->
       <button id="theme-toggle" class="icon-button theme-button" type="button" aria-label="Switch theme">☼</button>
     </div>
   </header>
 
   <main class="login-container">
-    <!-- =====================================================
-         Login Form
-         ===================================================== -->
+    <!-- login form jo user ke credentials lete hain -->
     <form class="login-card">
       <h1>
         Sign In
       </h1>
 
+      <!-- email input field -->
       <label for="email">
         Email or mobile number
       </label>
 
+      <!-- email ka input jo email format ko validate karta hai -->
       <input
         id="email"
         type="email"
@@ -80,10 +87,12 @@
         required
       >
 
+      <!-- password field -->
       <label for="password">
         Password
       </label>
 
+      <!-- password input jo text ko hide kar deta hai security ke liye -->
       <input
         id="password"
         type="password"
@@ -92,6 +101,7 @@
         required
       >
 
+      <!-- submit button jo form ko submit karta hai -->
       <button
         class="login-submit"
         type="submit"

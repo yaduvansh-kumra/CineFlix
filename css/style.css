@@ -1,68 +1,101 @@
 /* =========================================================
    CineFlix - Streaming Platform UI Style
    Pure Dark Mode • Mobile First • Responsive Design
+   yeh file mein poori project ki styling hai - colors, fonts, layout sab
    ========================================================= */
 
 /* 1. Design System & CSS Variables */
+/* css variables ko ek jgh define kar rahe hain taaki aage se easily change kar sak */
 :root {
+  /* background color - screen ke bottom ka color */
   --bg-color: #111113;
+  /* elevated surfaces - jab kuch upar aaye to dark gray use ho */
   --elevated-bg: #18181b;
+  /* card background - movie cards ke liye color */
   --card-bg: #222226;
+  /* hover karte time surface ka color change ho jata hai */
   --surface-hover: #2d2d33;
 
+  /* text color - jo likha hua dikhta hai */
   --text-color: #f5f5f7;
+  /* muted text - joh kuch dim dikhana ho like small descriptions */
   --text-muted: #a1a1aa;
+  /* very dim text - subtitle jaisa */
   --text-dim: #71717a;
 
+  /* netflix jaisa red color - buttons ke liye */
   --primary-color: #e50914;
+  /* jab hover karo to thoda zyada bright ho */
   --primary-hover: #f6121d;
+  /* glow effect - shadow jaisa transparent red */
   --primary-glow: rgba(229, 9, 20, 0.4);
 
+  /* match percentage ka green color */
   --match-green: #46d369;
+  /* rating star ka gold color */
   --star-gold: #ffb400;
 
+  /* lines aur borders ke liye dark color */
   --border-color: #2e2e36;
+  /* header ke liye semi-transparent dark */
   --header-bg: rgba(17, 17, 19, 0.92);
+  /* shadow - yeh shadows ko dark banata hai */
   --shadow-color: rgba(0, 0, 0, 0.65);
+  /* bade shadows ke liye */
   --shadow-heavy: 0 16px 36px rgba(0, 0, 0, 0.85);
 
+  /* light overlay - transparent white ko dark mein use karte hain */
   --bg-overlay-light: rgba(255, 255, 255, 0.08);
   --bg-overlay-medium: rgba(255, 255, 255, 0.1);
+  /* light borders */
   --border-light: rgba(255, 255, 255, 0.15);
   --border-medium: rgba(255, 255, 255, 0.2);
   --border-strong: rgba(255, 255, 255, 0.4);
+  /* primary button styling */
   --btn-primary-bg: #ffffff;
   --btn-primary-text: #000000;
+  /* rank number styling */
   --rank-stroke: #71717a;
   --rank-shadow: rgba(0, 0, 0, 0.8);
+  /* icons ke liye white color */
   --icon-white: #ffffff;
+  /* text ke liye heavy aur light shadows */
   --text-shadow-heavy: 0 4px 16px rgba(0, 0, 0, 0.85);
   --text-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.8);
 
+  /* animations ke liye timing */
   --transition-fast: 0.2s ease;
   --transition-smooth: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* light mode ke liye theme colors - jab user light mode enable kare */
+/* [data-theme="light"] selector se light mode ke colors override hote hain */
 [data-theme="light"] {
+  /* light mode mein background light ho jata hai */
   --bg-color: #f8f9fa;
   --elevated-bg: #ffffff;
   --card-bg: #ffffff;
   --surface-hover: #e9ecef;
 
+  /* text dark ho jata hai light mode mein */
   --text-color: #212529;
   --text-muted: #495057;
   --text-dim: #6c757d;
 
+  /* light mode ke borders */
   --border-color: #dee2e6;
   --header-bg: rgba(248, 249, 250, 0.92);
+  /* shadows ko light kar diya light mode mein */
   --shadow-color: rgba(0, 0, 0, 0.1);
   --shadow-heavy: 0 16px 36px rgba(0, 0, 0, 0.15);
 
+  /* light overlays */
   --bg-overlay-light: rgba(0, 0, 0, 0.05);
   --bg-overlay-medium: rgba(0, 0, 0, 0.1);
   --border-light: rgba(0, 0, 0, 0.15);
   --border-medium: rgba(0, 0, 0, 0.2);
   --border-strong: rgba(0, 0, 0, 0.4);
+  /* light mode mein button dark text ke saath */
   --btn-primary-bg: #212529;
   --btn-primary-text: #ffffff;
   --rank-stroke: #dee2e6;
@@ -73,6 +106,7 @@
 }
 
 /* 2. Global Reset */
+/* sab browsers ka default styling ko remove kar rahe hain taaki control rahe */
 *,
 *::before,
 *::after {
@@ -81,64 +115,99 @@
   padding: 0;
 }
 
+/* html tag ke liye */
 html {
+  /* smooth scroll animation jab koi link par click kare */
   scroll-behavior: smooth;
+  /* dark theme ko default set kar rahe hain */
   color-scheme: dark;
 }
 
+/* body - poora page */
 body {
+  /* minimum width mobile ke liye */
   min-width: 320px;
+  /* minimum height viewport height se zyada ho */
   min-height: 100vh;
+  /* kisi bhi overflow ko hidden rakho x-axis mein */
   overflow-x: hidden;
 
+  /* background color apply karo */
   background-color: var(--bg-color);
+  /* text color apply karo */
   color: var(--text-color);
 
+  /* font ko set karo - inter font ko priority de rahe hain */
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* line ki height set karo readable hone ke liye */
   line-height: 1.5;
+  /* text ko smooth render karo */
   -webkit-font-smoothing: antialiased;
 }
 
+/* jab menu open ho to body se scroll disable kar do */
 body.menu-open {
   overflow: hidden;
 }
 
+/* links ko style karo */
 a {
+  /* default color inherit karo */
   color: inherit;
+  /* underline remove karo */
   text-decoration: none;
+  /* smooth transition color mein */
   transition: color var(--transition-fast);
 }
 
+/* unordered lists ko style karo */
 ul {
+  /* bullets remove karo */
   list-style: none;
 }
 
+/* buttons, inputs aur selects ko same font de do */
 button,
 input,
 select {
   font: inherit;
 }
 
+/* buttons ke liye styling */
 button {
+  /* cursor pointer ban jata hai */
   cursor: pointer;
+  /* border remove kar do */
   border: none;
+  /* background remove kar do */
   background: none;
+  /* text color inherit kar do */
   color: inherit;
 }
 
+/* images ko responsive banao */
 img {
+  /* block display taaki full width le */
   display: block;
+  /* width 100% se zyada na hone paye */
   max-width: 100%;
+  /* height auto adjust ho */
   height: auto;
 }
 
 /* 3. Primary Header & Navigation */
+/* header - top mein fixed hota hai */
 .primary-header {
+  /* position fixed taaki top par rahe */
   position: fixed;
+  /* top: 0 se screen ke top se lagega */
   top: 0;
+  /* left: 0 se left edge par lagega */
   left: 0;
+  /* z-index high taaki sab ke upar rahe */
   z-index: 1000;
 
+  /* flex layout use karo left aur right ko side by side karne ke liye */
   display: flex;
   align-items: center;
   justify-content: space-between;

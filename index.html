@@ -1,40 +1,55 @@
 <!DOCTYPE html>
+<!-- yeh html5 ka syntax hai jisse browser ko pata chala ki iska html5 standard follow karta hai -->
 <html lang="en">
 <head>
+  <!-- head section mein metadata aur links hote hain jo page ko setup karte hain -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CineFlix - Stream unlimited movies, TV shows, and exclusive originals on any device.">
-  <title>CineFlix | Stream Movies &amp; Shows</title>
+  <!-- character encoding UTF-8 set kar rahe hain taaki sab languages properly display ho -->
 
-  <!-- Google Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- yeh viewport tag mobile devices par responsive design ke liye zaroori hai -->
+
+  <meta name="description" content="CineFlix - Stream unlimited movies, TV shows, and exclusive originals on any device.">
+  <!-- yeh description search engines mein show hota hai jab koi search kare -->
+
+  <title>CineFlix | Stream Movies &amp; Shows</title>
+  <!-- browser ke tab mein jo text dikhta hai vo yeh title hai -->
+
+  <!-- google fonts se fonts import kar rahe hain taaki text acha dikhe -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Shared stylesheet -->
+  <!-- apni css file ko link kar rahe hain jismein sabka styling hai -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- Page Loader Animation -->
+  <!-- yeh page loader animation hai jo loading ke time show hota hai -->
   <div id="page-loader" aria-hidden="true">
+    <!-- loader-content mein animation ke elements hain -->
     <div class="loader-content">
+      <!-- CINEFLIX text ko fade in/out animation ke saath show kar rahe hain -->
       <div class="loader-name">CINEFLIX</div>
+      <!-- progress bar jo slowly fill ho raha hai -->
       <div class="loader-bar">
         <div class="loader-progress"></div>
       </div>
     </div>
   </div>
 
-  <!-- Primary Header & Navigation -->
+  <!-- yeh main header hai jo top pe fixed hota hai har page mein -->
   <header id="main-header" class="primary-header">
     <div class="header-left">
+      <!-- logo par click karne se home page par aate hain -->
       <a href="index.html" class="brand-logo" aria-label="CineFlix Home">
         CINEFLIX
       </a>
 
+      <!-- main navigation menu jo sabhi pages ke links contain karta hai -->
       <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
         <ul>
+          <!-- har li mein ek link hai different section ke liye -->
           <li><a href="index.html" class="active" aria-current="page">Home</a></li>
           <li><a href="pages/tv-shows.html">TV Shows</a></li>
           <li><a href="pages/movies.html">Movies</a></li>
@@ -44,15 +59,21 @@
       </nav>
     </div>
 
+    <!-- header ke right side mein search, theme toggle aur login button hain -->
     <div class="header-right">
+      <!-- search input jo real-time mein movies/shows filter karta hai -->
       <label class="search-box" for="movie-search">
         <span class="search-icon" aria-hidden="true">⌕</span>
         <input id="movie-search" type="search" placeholder="Search titles..." autocomplete="off">
       </label>
 
+      <!-- theme toggle button jo dark/light mode switch karta hai -->
       <button id="theme-toggle" class="icon-button theme-button" type="button" aria-label="Switch theme">☼</button>
+
+      <!-- login page ke liye link -->
       <a href="pages/login.html" class="btn-login">Sign In</a>
 
+      <!-- mobile mein hamburger menu toggle button -->
       <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
         ☰
       </button>
@@ -60,17 +81,24 @@
   </header>
 
   <main>
-    <!-- Featured Hero Section -->
+    <!-- yeh hero section hai jisme big featured movie ka poster aur details hain -->
     <section class="hero" aria-label="Featured movie: Interstellar">
+      <!-- background mein movie ka poster image show ho raha hai -->
       <div class="hero-bg">
         <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1600&q=80" alt="Deep space galaxy and nebulae">
+        <!-- vignette dark effect hai jisse text properly read ho sake -->
         <div class="hero-vignette"></div>
       </div>
 
+      <!-- hero ke text content (movie title, description, buttons) -->
       <div class="hero-content">
+        <!-- small text upar jo original spotlight bata rahe hain -->
         <p class="hero-kicker">★ CineFlix Original Spotlight</p>
+
+        <!-- badi movie title -->
         <h1 class="hero-title">INTERSTELLAR</h1>
 
+        <!-- movie ke metadata like rating, year, age rating etc -->
         <div class="hero-meta">
           <span class="match-score">98% Match</span>
           <span class="rating-badge">★ 8.7</span>
@@ -80,14 +108,18 @@
           <span class="hd-badge">4K Ultra HD</span>
         </div>
 
+        <!-- movie ka description/synopsis -->
         <p class="hero-description">
           As Earth becomes uninhabitable, a former NASA pilot joins a courageous mission through a newly discovered wormhole in space to secure humanity's survival among the stars.
         </p>
 
+        <!-- play aur more info ke buttons -->
         <div class="hero-actions">
+          <!-- play button jo watch page pe le jati hai movie title ke saath -->
           <a class="btn btn-primary" href="pages/watch.html?title=Interstellar">
             <span aria-hidden="true">▶</span> Play Now
           </a>
+          <!-- more info button jo details page open karta hai -->
           <a class="btn btn-secondary" href="pages/details.html?title=Interstellar">
             <span aria-hidden="true">ⓘ</span> More Info
           </a>
@@ -95,23 +127,30 @@
       </div>
     </section>
 
-    <!-- Empty Search State Message -->
+    <!-- yeh message show hota hai jab search result empty ho -->
     <p id="search-empty" class="search-empty" hidden>
       No movies or TV shows found matching your search.
     </p>
 
-    <!-- Top 10 Trending Section (All 10 Items) -->
+    <!-- top 10 trending movies ka section -->
     <section class="media-section" aria-labelledby="trending-title">
+      <!-- section ka heading -->
       <div class="section-heading">
         <h2 id="trending-title" class="section-title">Top 10 Trending in CineFlix</h2>
+        <!-- "see all" link jo poore trending list show karta hai -->
         <a href="pages/new-popular.html" class="see-all">See All 10 ›</a>
       </div>
 
+      <!-- horizontal scroller container jo bari movies ko scroll karne deta hai -->
       <div class="scroller-wrapper">
+        <!-- actual scroller jisme trending items hain -->
         <div class="media-scroller trending-scroller">
+          <!-- har trending item ko ek rank number diya gaya hai 1 se 10 tak -->
           <!-- Rank 1 -->
           <a class="trending-item" href="pages/details.html?title=Interstellar" data-title="Interstellar" aria-label="Rank 1: Interstellar">
+            <!-- rank number display kar rahe hain -->
             <span class="rank">1</span>
+            <!-- poster image show ho raha hai -->
             <span class="poster-wrapper">
               <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Interstellar poster" loading="lazy">
             </span>
@@ -125,6 +164,7 @@
             </span>
           </a>
 
+          <!-- yeh itne sab items padhne se achha hai repeat samajh gaye ho, ab action movies section dekho -->
           <!-- Rank 3 -->
           <a class="trending-item" href="pages/details.html?title=The%20Last%20Signal" data-title="The Last Signal" aria-label="Rank 3: The Last Signal">
             <span class="rank">3</span>
@@ -192,35 +232,50 @@
       </div>
     </section>
 
-    <!-- Action & Blockbuster Movies (10 items) -->
+    <!-- action aur blockbuster movies ka ek aur section -->
     <section class="media-section" aria-labelledby="action-title">
+      <!-- section heading -->
       <div class="section-heading">
         <h2 id="action-title" class="section-title">Action &amp; Adventure Blockbusters</h2>
+        <!-- movies page par sab movies dekh sakte hain -->
         <a href="pages/movies.html" class="see-all">Explore All ›</a>
       </div>
 
       <div class="scroller-wrapper">
+        <!-- horizontal scroller jo action movies show karta hai -->
         <div class="media-scroller">
+          <!-- media card ek complete movie card hai poster, title, rating etc ke saath -->
           <!-- 1. Neon Horizon -->
           <article class="media-card" data-title="Neon Horizon" data-category="action sci-fi cyberpunk">
+            <!-- link jo details page pe le jati hai -->
             <a href="pages/details.html?title=Neon%20Horizon" class="media-link">
+              <!-- poster container -->
               <figure class="media-poster">
+                <!-- rating badge upar right corner mein -->
                 <span class="media-badge-top">★ 8.5</span>
+                <!-- movie ka poster image -->
                 <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Neon Horizon movie poster" loading="lazy">
               </figure>
+              <!-- card ke liye info section -->
               <div class="media-info">
+                <!-- movie ka title -->
                 <h3 class="media-title">Neon Horizon</h3>
+                <!-- match percentage, age rating aur quality info -->
                 <div class="media-meta">
                   <span class="match-score">97% Match</span>
                   <span class="age-rating">A 18+</span>
                   <span class="hd-badge">4K</span>
                 </div>
+                <!-- genre tags jo movie ke type batate hain -->
                 <ul class="genre-tags">
                   <li>Action</li>
                   <li>Cyberpunk</li>
                 </ul>
+                <!-- play aur add to list buttons -->
                 <div class="card-quick-actions">
+                  <!-- play button jo watch page khol deta hai -->
                   <a href="pages/watch.html?title=Neon%20Horizon" class="btn-card-play">▶ Play</a>
+                  <!-- add to list button jo my list mein add kar deta hai -->
                   <button class="btn-card-list" type="button" data-title="Neon Horizon" aria-label="Add to List">+</button>
                 </div>
               </div>
@@ -739,11 +794,14 @@
 
   </main>
 
-  <!-- Footer -->
+  <!-- footer section jo site ke bottom mein hai -->
   <footer class="primary-footer">
+    <!-- footer ke links ko organize karne ke liye container -->
     <div class="footer-links">
+      <!-- pehla column jo browse links contain karta hai -->
       <div class="footer-col">
         <h3>Browse</h3>
+        <!-- navigation links footer mein bhi diye hain taaki user easily navigate kar sake -->
         <ul>
           <li><a href="pages/movies.html">Movies</a></li>
           <li><a href="pages/tv-shows.html">TV Shows</a></li>
@@ -752,8 +810,10 @@
         </ul>
       </div>
 
+      <!-- doosra column jo help aur account related links hai -->
       <div class="footer-col">
         <h3>Help &amp; Account</h3>
+        <!-- user support ke liye links -->
         <ul>
           <li><a href="pages/login.html">Account Sign In</a></li>
           <li><a href="#">Help Center</a></li>
@@ -762,8 +822,10 @@
         </ul>
       </div>
 
+      <!-- teesra column audio aur subtitles related -->
       <div class="footer-col">
         <h3>Audio &amp; Subtitles</h3>
+        <!-- company ke baare mein aur business related links -->
         <ul>
           <li><a href="#">Media Center</a></li>
           <li><a href="#">Investor Relations</a></li>
@@ -772,8 +834,10 @@
         </ul>
       </div>
 
+      <!-- chautha column legal information ke liye -->
       <div class="footer-col">
         <h3>Legal</h3>
+        <!-- legal aur privacy related important links -->
         <ul>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Cookie Preferences</a></li>
@@ -783,12 +847,16 @@
       </div>
     </div>
 
+    <!-- copyright message jo site ke owner ka legal notice hai -->
     <p class="copyright">
       &copy; 2026 CineFlix Demo Streaming Service. Built for Front End Engineering Project.
     </p>
   </footer>
 
-  <!-- Main JavaScript File -->
+  <!-- javascript file link kar rahe hain jo sab functionality implement karta hai -->
+  <!-- jab html load hote hi js file run hota hai -->
   <script src="js/app.js"></script>
 </body>
+<!-- body tag ka closing tag -->
 </html>
+<!-- html tag ka closing tag, document complete ho gaya -->

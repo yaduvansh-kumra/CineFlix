@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- tv shows page series cards ko browse karne ke liye hai -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,17 +7,17 @@
   <meta name="description" content="Watch top TV Shows and binge-worthy series on CineFlix.">
   <title>TV Shows | CineFlix</title>
 
-  <!-- Google Fonts -->
+  <!-- same google fonts poore project mein consistent typography ke liye -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS -->
+  <!-- shared css common header aur cards ko style karta hai -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
+  <!-- main navigation, search aur theme toggle wala header -->
   <header id="main-header" class="primary-header scrolled">
     <div class="header-left">
       <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
@@ -50,7 +51,7 @@
   </header>
 
   <main class="browse-page">
-    <!-- TV Shows Hero Banner -->
+    <!-- tv shows ka intro banner -->
     <section class="browse-hero tv-hero">
       <p class="hero-kicker">SERIES &amp; EPISODES</p>
       <h1>BINGE-WORTHY TV SHOWS</h1>
@@ -59,10 +60,10 @@
       </p>
     </section>
 
-    <!-- Empty search message -->
+    <!-- matching show na milne par empty state message -->
     <p id="search-empty" class="search-empty" hidden>No TV shows found matching your search term.</p>
 
-    <!-- TV Shows Grid -->
+    <!-- tv show cards ka responsive grid -->
     <section class="media-section browse-grid-section">
       <div class="section-heading">
         <h2 class="section-title">Popular TV Series</h2>

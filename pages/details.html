@@ -1,27 +1,36 @@
 <!DOCTYPE html>
+<!-- html5 standard document jo movie details page hai -->
 <html lang="en">
 <head>
+  <!-- character encoding utf-8 -->
   <meta charset="UTF-8">
+  <!-- mobile responsive design ke liye -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- seo description -->
   <meta name="description" content="Movie details and streaming overview on CineFlix.">
+  <!-- browser tab mein title -->
   <title>Movie Details | CineFlix</title>
 
-  <!-- Google Fonts -->
+  <!-- google fonts import -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- actual fonts link -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS -->
+  <!-- sab pages ke liye common styling -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
+  <!-- header aur navigation section -->
   <header id="main-header" class="primary-header scrolled">
+      <!-- header ke left side - logo aur menu -->
     <div class="header-left">
+        <!-- cineflix logo jo home page par le jaega -->
       <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
         CINEFLIX
       </a>
+  <!-- main navigation menu -->
 
       <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
         <ul>
@@ -33,34 +42,44 @@
         </ul>
       </nav>
     </div>
+  <!-- header ke right side - theme button, login, menu -->
 
     <div class="header-right">
+        <!-- dark/light mode toggle -->
       <button id="theme-toggle" class="icon-button theme-button" type="button" aria-label="Switch theme">☼</button>
+        <!-- login page ke link -->
       <a href="login.html" class="btn-login">Sign In</a>
+  <!-- mobile menu toggle button -->
 
       <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
         ☰
       </button>
     </div>
   </header>
+  <!-- main content section jo movie details show karega -->
 
   <main class="details-page">
-    <!-- Movie Details Backdrop -->
+    <!-- movie ka backdrop image jo background mein show hota hai -->
     <section class="details-backdrop">
+        <!-- backdrop image -->
       <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1600&q=80" alt="Backdrop image">
       <div class="details-overlay"></div>
     </section>
 
-    <!-- Movie Details Content -->
+    <!-- selected movie ka title, metadata, description aur actions -->
     <section class="details-content">
+      <!-- home page par wapas jaane ka link -->
       <a href="../index.html" class="back-link">
         ← Back to Home
       </a>
 
+      <!-- chhota category label -->
       <p class="hero-kicker">CineFlix Original Spotlight</p>
 
+      <!-- movie ka main title, js url ke basis par update kar sakti hai -->
       <h1>Interstellar</h1>
 
+      <!-- rating, match percentage, year aur quality jaise metadata -->
       <div class="hero-meta">
         <span class="match-score">98% Match</span>
         <span class="rating-badge">★ 8.7</span>
@@ -70,10 +89,12 @@
         <span class="hd-badge">4K Ultra HD</span>
       </div>
 
+      <!-- movie ki story ka short description -->
       <p class="details-description">
         When Earth becomes uninhabitable, a former NASA pilot joins a mission through a newly discovered wormhole. The crew must find a planet capable of becoming humanity's new home before time runs out.
       </p>
 
+      <!-- play aur my list ke buttons -->
       <div class="hero-actions">
         <a href="watch.html?title=Interstellar" class="btn btn-primary">
           <span aria-hidden="true">▶</span> Play Now
@@ -84,6 +105,7 @@
         </button>
       </div>
 
+      <!-- cast, genre, director aur audio/subtitle ki extra information -->
       <div class="details-information">
         <p><strong>Cast:</strong> Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine</p>
         <p><strong>Genres:</strong> Science Fiction, Adventure, Drama</p>
@@ -92,7 +114,7 @@
       </div>
     </section>
 
-    <!-- More Like This (10 Recommended Movies) -->
+    <!-- similar recommended movies ka horizontal carousel -->
     <section class="media-section more-like-this" aria-labelledby="more-like-this-title">
       <div class="section-heading">
         <h2 id="more-like-this-title" class="section-title">More Like This</h2>

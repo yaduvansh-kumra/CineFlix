@@ -2,9 +2,14 @@
    CineFlix - Core Application Logic
    HTML5 Video Playback • Movie Database • Dynamic Details •
    Horizontal Scrollers • Search • My List Persistence
+
+   yeh js file mein poore project ki interactivity aur functionality hai
+   koi bhi event ya animation yahan pe define hai
    ========================================================= */
 
 // 1. Central Movie Database
+// yeh object mein sab movies ka data hai - title, year, rating, cast, description etc
+// har movie ke pass uska complete information hai jisse details page par show kar sak
 const MOVIES_DATABASE = {
   "Interstellar": {
     title: "Interstellar",
@@ -249,74 +254,112 @@ const MOVIES_DATABASE = {
 };
 
 // 2. DOM Ready Initialization
+// jab poora html document load ho jaye to yeh event fire hota hai
+// tab hum sab initialization functions ko call karte hain
 document.addEventListener("DOMContentLoaded", () => {
+  // header ko sticky banao scroll ke sath
   initStickyHeader();
+  // mobile menu ko toggle karne ka functionality add karo
   initMobileMenu();
+  // search functionality add karo
   initSearch();
+  // scroller buttons add karo horizontal scroll ke liye
   initScrollerButtons();
+  // my list system ko initialize karo localStorage ke saath
   initMyListSystem();
+  // details page ko dynamic banao
   initDetailsPage();
+  // video player ko initialize karo
   initWatchPlayer();
 });
 
 // 3. Sticky Header on Scroll
+// yeh function header ko sticky banata hai jab page scroll hove
 function initStickyHeader() {
+  // header element ko select karo
   const header = document.querySelector("#main-header");
+  // agar header nahi mila to return karo
   if (!header) return;
 
+  // jab user scroll kare to ye event fire hoga
   window.addEventListener("scroll", () => {
+    // scrollY > 30 means ki user ne 30 pixels se zyada scroll kiya
+    // to "scrolled" class add kar do header ko jo styling apply karega
     header.classList.toggle("scrolled", window.scrollY > 30);
   });
 }
 
 // 4. Mobile Navigation Drawer
+// mobile mein hamburger menu toggle karne ke liye
 function initMobileMenu() {
+  // hamburger button ko select karo
   const menuToggle = document.querySelector("#menu-toggle");
+  // navigation menu ko select karo
   const primaryNav = document.querySelector("#primary-nav");
+  // agar dono nahi mile to return karo
   if (!menuToggle || !primaryNav) return;
 
+  // menu button par click event listener add karo
   menuToggle.addEventListener("click", () => {
+    // menu ko open/close toggle karo
     const isMenuOpen = primaryNav.classList.toggle("open");
+    // body mein bhi class toggle karo taaki background lock ho
     document.body.classList.toggle("menu-open", isMenuOpen);
+    // aria-expanded ko update karo accessibility ke liye
     menuToggle.setAttribute("aria-expanded", String(isMenuOpen));
+    // button ka text change karo - open/close indicator
     menuToggle.textContent = isMenuOpen ? "✕" : "☰";
   });
 }
 
 // 5. Horizontal Scroller Navigation Buttons
+// left aur right arrow buttons jo horizontal scroll karte hain
 function initScrollerButtons() {
+  // sab media scrollers ko select karo
   const scrollers = document.querySelectorAll(".media-scroller");
 
+  // har scroller ke liye
   scrollers.forEach((scroller) => {
+    // scroller ke parent ko find karo
     const wrapper = scroller.closest(".scroller-wrapper") || scroller.parentElement;
+    // agar wrapper nahi mila to return karo
     if (!wrapper) return;
 
-    // Check if buttons exist, else create them
+    // pehle se existing buttons check karo
     let leftBtn = wrapper.querySelector(".scroll-btn.left");
     let rightBtn = wrapper.querySelector(".scroll-btn.right");
 
+    // agar buttons nahi hain to create kar do
     if (!leftBtn && !wrapper.classList.contains("no-scroll-btns")) {
+      // wrapper ko relative position de do taaki buttons absolute ho sak
       wrapper.style.position = "relative";
+
+      // left button create karo
       leftBtn = document.createElement("button");
       leftBtn.className = "scroll-btn left";
       leftBtn.setAttribute("aria-label", "Scroll Left");
       leftBtn.innerHTML = "‹";
 
+      // right button create karo
       rightBtn = document.createElement("button");
       rightBtn.className = "scroll-btn right";
       rightBtn.setAttribute("aria-label", "Scroll Right");
       rightBtn.innerHTML = "›";
 
+      // dono buttons ko wrapper mein append karo
       wrapper.appendChild(leftBtn);
       wrapper.appendChild(rightBtn);
     }
 
+    // left button par click karte time left ko scroll karo
     if (leftBtn) {
       leftBtn.addEventListener("click", () => {
+        // screen ka 65% width scroll karo
         scroller.scrollBy({ left: -window.innerWidth * 0.65, behavior: "smooth" });
       });
     }
 
+    // right button par click karte time right ko scroll karo
     if (rightBtn) {
       rightBtn.addEventListener("click", () => {
         scroller.scrollBy({ left: window.innerWidth * 0.65, behavior: "smooth" });
@@ -326,27 +369,42 @@ function initScrollerButtons() {
 }
 
 // 6. Real-time Search Filtering
+// jab user search box mein type kare to movies/shows filter ho jaye
 function initSearch() {
+  // search input ko select karo
   const searchInput = document.querySelector("#movie-search");
+  // sab media cards ko select karo (movies aur shows)
   const mediaCards = document.querySelectorAll(".media-card, .trending-item, .landscape-card");
+  // empty state message jo tab show hota hai jab kuch nahi milta
   const searchEmpty = document.querySelector("#search-empty");
 
+  // agar search input nahi mila to return karo
   if (!searchInput) return;
 
+  // jab user type kare to
   searchInput.addEventListener("input", (e) => {
+    // input value ko lowercase mein convert karo
     const query = e.target.value.trim().toLowerCase();
+    // kitne results mile yeh count karne ke liye
     let matchCount = 0;
 
+    // har card ke liye
     mediaCards.forEach((card) => {
+      // card mein title data attribute se lao
       const title = card.dataset.title?.toLowerCase() || card.querySelector("h3, .media-title")?.textContent?.toLowerCase() || "";
+      // category data attribute se lao
       const category = card.dataset.category?.toLowerCase() || "";
 
+      // title ya category mein search term match ho to card show karo
       const isMatch = query === "" || title.includes(query) || category.includes(query);
+      // display style ko set karo based on match
       card.style.display = isMatch ? "" : "none";
 
+      // agar match hua to count badao
       if (isMatch) matchCount++;
     });
 
+    // agar search term hai aur koi match nahi hua to empty message show karo
     if (searchEmpty) {
       searchEmpty.hidden = !(query !== "" && matchCount === 0);
     }
@@ -354,57 +412,81 @@ function initSearch() {
 }
 
 // 7. My List Management with LocalStorage
+// user ki watchlist ko save karo browser ke localStorage mein
 function initMyListSystem() {
+  // browser ke storage mein ye key use kar rahe hain
   const STORAGE_KEY = "cineflix_my_list";
+
+  // localStorage se saved list ko get karo
   const getSavedList = () => {
     try {
+      // try karo JSON parse karne ka
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     } catch {
+      // agar error aaye to empty array return karo
       return [];
     }
   };
 
+  // list ko localStorage mein save karo
   const saveList = (list) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
   };
 
-  // Attach click listener for buttons
+  // jab koi bhi "add to list" button par click kare
   document.addEventListener("click", (e) => {
+    // button ko closest method se find karo
     const btn = e.target.closest(".list-button, .btn-card-list");
+    // agar button nahi mila to return karo
     if (!btn) return;
 
+    // link action ko prevent karo
     e.preventDefault();
     e.stopPropagation();
 
+    // movie title get karo button se data attribute se
     const title = btn.dataset.title || btn.closest("[data-title]")?.dataset?.title || "Interstellar";
+    // current list ko get karo
     let list = getSavedList();
+    // check karo ki title pehle se list mein hai ya nahi
     const index = list.indexOf(title);
 
+    // agar list mein pehle se hai to remove karo
     if (index > -1) {
       list.splice(index, 1);
       btn.classList.remove("added");
+      // button ke text ko reset karo
       if (btn.classList.contains("list-button")) btn.textContent = "+ My List";
       if (btn.classList.contains("btn-card-list")) btn.textContent = "+";
     } else {
+      // agar nahi hai to add karo list mein
       list.push(title);
       btn.classList.add("added");
+      // button ke text ko update karo
       if (btn.classList.contains("list-button")) btn.textContent = "✓ In My List";
       if (btn.classList.contains("btn-card-list")) btn.textContent = "✓";
     }
 
+    // updated list ko save karo
     saveList(list);
   });
 
-  // If on My List page, render saved items or update badges
+  // agar my-list page par ho to saved items ko highlight karo
   const listGrid = document.querySelector("#my-list-grid");
   if (listGrid) {
+    // saved list get karo
     const saved = getSavedList();
+    // agar list mein items hain
     if (saved.length > 0) {
-      // Highlight existing items
+      // sab cards ko find karo
       const cards = listGrid.querySelectorAll(".media-card");
+      // har card ke liye
       cards.forEach(card => {
+        // card ka title get karo
         const title = card.dataset.title;
+        // list button find karo
         const btn = card.querySelector(".btn-card-list, .list-button");
+        // agar title saved list mein hai to button ko highlight karo
         if (saved.includes(title) && btn) {
           btn.classList.add("added");
           btn.textContent = "✓";
@@ -415,12 +497,18 @@ function initMyListSystem() {
 }
 
 // 8. Dynamic Movie Details Page Initialization
+// details page mein jo movie ka data show hota hai url se lao aur display karo
 function initDetailsPage() {
+  // details page ko select karo
   const detailsPage = document.querySelector(".details-page");
+  // agar details page nahi hai (maybe home page hai) to return karo
   if (!detailsPage) return;
 
+  // URL se parameters nikalor
   const urlParams = new URLSearchParams(window.location.search);
+  // title parameter get karo - default "Interstellar"
   const movieTitle = urlParams.get("title") || "Interstellar";
+  // database se movie ki info get karo ya fallback value use karo
   const movie = MOVIES_DATABASE[movieTitle] || {
     title: movieTitle,
     year: "2024",
@@ -437,33 +525,40 @@ function initDetailsPage() {
     backdrop: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1600&q=80"
   };
 
-  // Update Page Elements
+  // Page ke title ko update karo browser tab mein
   document.title = `${movie.title} | CineFlix`;
 
+  // h1 heading ko movie title se update karo
   const h1 = detailsPage.querySelector(".details-content h1");
   if (h1) h1.textContent = movie.title;
 
+  // backdrop image ko movie ka backdrop image se replace karo
   const backdropImg = detailsPage.querySelector(".details-backdrop img");
   if (backdropImg) {
     backdropImg.src = movie.backdrop || movie.poster;
     backdropImg.alt = `${movie.title} Backdrop`;
   }
 
+  // match score ko update karo
   const matchScore = detailsPage.querySelector(".match-score");
   if (matchScore) matchScore.textContent = movie.match;
 
+  // description ko update karo
   const desc = detailsPage.querySelector(".details-description");
   if (desc) desc.textContent = movie.description;
 
+  // play button ke link ko movie title ke saath update karo
   const playBtn = detailsPage.querySelector(".hero-actions .btn-primary");
   if (playBtn) {
     playBtn.href = `watch.html?title=${encodeURIComponent(movie.title)}`;
   }
 
+  // my list button ko set up karo
   const listBtn = detailsPage.querySelector(".hero-actions .list-button");
   if (listBtn) {
     listBtn.dataset.title = movie.title;
     try {
+      // check karo ki title pehle se my list mein hai ya nahi
       const saved = JSON.parse(localStorage.getItem("cineflix_my_list")) || [];
       if (saved.includes(movie.title)) {
         listBtn.classList.add("added");
@@ -472,6 +567,7 @@ function initDetailsPage() {
     } catch {}
   }
 
+  // details information ko update karo (cast, director, genres)
   const infoDiv = detailsPage.querySelector(".details-information");
   if (infoDiv) {
     infoDiv.innerHTML = `
@@ -484,12 +580,17 @@ function initDetailsPage() {
 }
 
 // 9. Video Player Logic on watch.html
+// video player ke controls ko setup karo
 function initWatchPlayer() {
+  // video element ko select karo
   const video = document.querySelector("#main-video-player");
+  // agar video nahi mila to return karo
   if (!video) return;
 
+  // URL se title get karo
   const urlParams = new URLSearchParams(window.location.search);
   const movieTitle = urlParams.get("title") || "Interstellar";
+  // database se movie info get karo
   const movie = MOVIES_DATABASE[movieTitle] || {
     title: movieTitle,
     year: "2024",
@@ -500,21 +601,26 @@ function initWatchPlayer() {
     description: "Streaming demo in high definition. Enjoy full video playback functionality."
   };
 
-  // Update Watch UI texts
+  // page title ko update karo
   document.title = `Watch ${movie.title} | CineFlix`;
+
+  // player ka title update karo
   const titleDisplay = document.querySelector("#player-movie-title");
   if (titleDisplay) titleDisplay.textContent = movie.title;
 
+  // watch info page ka title
   const watchInfoTitle = document.querySelector("#watch-title");
   if (watchInfoTitle) watchInfoTitle.textContent = movie.title;
 
+  // description show karo
   const watchDesc = document.querySelector("#watch-desc");
   if (watchDesc) watchDesc.textContent = movie.description;
 
+  // back link ko update karo
   const backLink = document.querySelector(".back-to-details");
   if (backLink) backLink.href = `details.html?title=${encodeURIComponent(movie.title)}`;
 
-  // Controls Elements
+  // player ke controls ko select karo
   const playerWrapper = document.querySelector(".player-wrapper");
   const playPauseBtn = document.querySelector("#btn-play-pause");
   const centerPlayBtn = document.querySelector("#center-play-btn");
@@ -527,13 +633,16 @@ function initWatchPlayer() {
   const fullscreenBtn = document.querySelector("#btn-fullscreen");
 
   // Play / Pause Toggle
+  // video ko play/pause karo
   const togglePlay = () => {
     if (video.paused || video.ended) {
+      // video ko play karo
       video.play().catch(() => {});
       if (playerWrapper) playerWrapper.classList.remove("paused");
       if (centerPlayBtn) centerPlayBtn.style.display = "none";
       if (playPauseBtn) playPauseBtn.innerHTML = "❚❚";
     } else {
+      // video ko pause karo
       video.pause();
       if (playerWrapper) playerWrapper.classList.add("paused");
       if (centerPlayBtn) centerPlayBtn.style.display = "flex";
@@ -541,26 +650,33 @@ function initWatchPlayer() {
     }
   };
 
+  // play/pause buttons par click listeners add karo
   if (centerPlayBtn) centerPlayBtn.addEventListener("click", togglePlay);
   if (playPauseBtn) playPauseBtn.addEventListener("click", togglePlay);
+  // video par click karte time bhi toggle ho
   video.addEventListener("click", togglePlay);
 
-  // Time & Progress Formatting
+  // Time ko MM:SS format mein convert karo
   const formatTime = (seconds) => {
     const min = Math.floor(seconds / 60);
     const sec = Math.floor(seconds % 60);
     return `${min.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
   };
 
+  // jab video load hove to total time show karo
   video.addEventListener("loadedmetadata", () => {
     if (timeTotal) timeTotal.textContent = formatTime(video.duration || 0);
   });
 
+  // jab video play ho raha ho to current time update karo
   video.addEventListener("timeupdate", () => {
     if (video.duration) {
+      // progress bar ko update karo
       const pct = (video.currentTime / video.duration) * 100;
       if (progressFilled) progressFilled.style.width = `${pct}%`;
+      // current time display karo
       if (timeCurrent) timeCurrent.textContent = formatTime(video.currentTime);
+      // total time display karo
       if (timeTotal && timeTotal.textContent === "00:00") {
         timeTotal.textContent = formatTime(video.duration);
       }
@@ -568,10 +684,13 @@ function initWatchPlayer() {
   });
 
   // Seek on Scrubber Click
+  // progress bar par click karte time video seek karo
   if (progressContainer) {
     progressContainer.addEventListener("click", (e) => {
+      // click ka position percent mein nikalo
       const rect = progressContainer.getBoundingClientRect();
       const clickPos = (e.clientX - rect.left) / rect.width;
+      // video ke currentTime ko update karo
       if (video.duration) {
         video.currentTime = clickPos * video.duration;
       }
@@ -579,63 +698,83 @@ function initWatchPlayer() {
   }
 
   // Volume & Mute
+  // mute button ko handle karo
   if (muteBtn) {
     muteBtn.addEventListener("click", () => {
+      // muted state ko toggle karo
       video.muted = !video.muted;
+      // button ka icon change karo based on muted state
       muteBtn.innerHTML = video.muted ? "🔇" : "🔊";
     });
   }
 
+  // volume slider ko handle karo
   if (volumeSlider) {
     volumeSlider.addEventListener("input", (e) => {
+      // slider ki value se volume set karo (0 se 1 tak)
       video.volume = parseFloat(e.target.value);
+      // agar volume 0 ho to muted mark karo
       video.muted = video.volume === 0;
+      // icon ko update karo
       if (muteBtn) muteBtn.innerHTML = video.muted ? "🔇" : "🔊";
     });
   }
 
   // Fullscreen
+  // fullscreen button ko handle karo
   if (fullscreenBtn) {
     fullscreenBtn.addEventListener("click", () => {
+      // agar pehle se fullscreen nahi hai to fullscreen enter karo
       if (!document.fullscreenElement) {
         if (playerWrapper.requestFullscreen) playerWrapper.requestFullscreen();
       } else {
+        // agar fullscreen hai to exit karo
         if (document.exitFullscreen) document.exitFullscreen();
       }
     });
   }
 
   // Try Auto-play with fallback
+  // jab page load ho to video ko auto-play try karo
   video.play().then(() => {
+    // agar auto-play successful ho to controls update karo
     if (playerWrapper) playerWrapper.classList.remove("paused");
     if (centerPlayBtn) centerPlayBtn.style.display = "none";
     if (playPauseBtn) playPauseBtn.innerHTML = "❚❚";
   }).catch(() => {
-    // Autoplay prevented by browser, show big play button
+    // agar auto-play fail ho to big play button show karo
     if (playerWrapper) playerWrapper.classList.add("paused");
     if (centerPlayBtn) centerPlayBtn.style.display = "flex";
   });
 }
 
-// 6. Theme Toggle Logic
+// 10. Theme Toggle Logic
+// dark aur light mode ko switch karne ka functionality
 function initThemeToggle() {
+  // sab theme toggle buttons ko select karo
   const themeToggleBtns = document.querySelectorAll('#theme-toggle, .theme-button');
+  // agar buttons nahi mile to return karo
   if (!themeToggleBtns.length) return;
 
-  // Retrieve saved theme or default to dark
+  // localStorage se saved theme ko get karo, default dark
   const savedTheme = localStorage.getItem('cineflix-theme') || 'dark';
+  // html element par data-theme attribute set karo
   document.documentElement.setAttribute('data-theme', savedTheme);
 
+  // har button par click listener add karo
   themeToggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      // current theme get karo
       const currentTheme = document.documentElement.getAttribute('data-theme');
+      // agar light theme hai to dark karo, otherwise light karo
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
+      // html element ka theme change karo
       document.documentElement.setAttribute('data-theme', newTheme);
+      // naya theme localStorage mein save karo taaki next time bhi same theme ho
       localStorage.setItem('cineflix-theme', newTheme);
     });
   });
 }
 
-// Initialize theme early to avoid flicker
+// page load hote hi theme toggle ko initialize karo taaki flicker na ho
 initThemeToggle();

@@ -1,47 +1,68 @@
 <!DOCTYPE html>
+<!-- html5 standard page setup signup ke liye -->
 <html lang="en">
 <head>
+  <!-- character encoding set -->
   <meta charset="UTF-8">
+  <!-- mobile responsive banane ke liye viewport set karo -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- page ka description jo google search mein aata hai -->
   <meta name="description" content="Sign up for the CineFlix frontend demonstration.">
+  <!-- browser tab mein jo title show hota hai -->
   <title>Sign Up | CineFlix</title>
 
-  <!-- Google Fonts -->
+  <!-- google fonts ko preconnect karo ta ki jaldi load ho -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- actual fonts import - bebas neue aur inter -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS -->
+  <!-- shared styling jo sab pages mein same hai -->
   <link rel="stylesheet" href="../css/style.css">
-  
-  <!-- Login page specific CSS -->
+  <!-- login aur signup page dono ke liye same styling -->
   <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body class="login-page">
+    <!-- header section jo signup page ke top mein -->
   <header class="login-header">
+      <!-- cineflix logo jo home page par le jaega -->
     <a href="../index.html" class="brand-logo" aria-label="Return to CineFlix home">CineFlix</a>
+      <!-- theme toggle button right side mein -->
     <div class="header-right">
+        <!-- dark mode/light mode switch karne ka button -->
       <button id="theme-toggle" class="icon-button theme-button" type="button" aria-label="Switch theme">☼</button>
     </div>
   </header>
+  <!-- main signup form container -->
 
   <main class="login-container">
+      <!-- signup form jo user ka registration data lete hain -->
     <form class="login-card">
+        <!-- form ka heading -->
       <h1>Sign Up</h1>
+  <!-- username input field -->
 
       <label for="username">Username</label>
+        <!-- username ko input karo -->
       <input id="username" type="text" placeholder="Choose a username" required>
+  <!-- email input field -->
 
       <label for="email">Email</label>
+        <!-- email input jo email format check karega -->
       <input id="email" type="email" placeholder="Enter your email" autocomplete="email" required>
+  <!-- password field -->
 
       <label for="password">Password</label>
+        <!-- password input jo text ko hide kar deta hai -->
       <input id="password" type="password" placeholder="Create a password" autocomplete="new-password" required>
+  <!-- form submit button -->
 
       <button class="login-submit" type="submit">Sign Up</button>
+  <!-- form submission ke messages yaha dikhte hain -->
 
       <p class="form-message" aria-live="polite"></p>
+  <!-- login page ke link -->
 
       <p class="signup-text">
         Already have an account? <a href="login.html">Sign In.</a>

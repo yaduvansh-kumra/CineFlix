@@ -6,20 +6,20 @@
   <meta name="description" content="Watch movies and shows on CineFlix video player.">
   <title>Watch Video | CineFlix</title>
 
-  <!-- Google Fonts -->
+  <!-- google fonts se page ki typography consistent rakhi hai -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS -->
+  <!-- common css jo shared layout ko style karta hai -->
   <link rel="stylesheet" href="../css/style.css">
 
-  <!-- Watch page specific CSS -->
+  <!-- watch page ke player controls ki special styling -->
   <link rel="stylesheet" href="../css/watch.css">
 </head>
 
 <body class="watch-page">
-  <!-- Top Navigation Header -->
+  <!-- header mein logo aur details page par wapas jaane ka link -->
   <header class="watch-header">
     <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
       CINEFLIX
@@ -30,21 +30,21 @@
     </a>
   </header>
 
-  <!-- Main Video Player Container -->
+  <!-- main video player ka complete wrapper -->
   <main class="watch-main">
     <div class="player-wrapper">
-      <!-- HTML5 Video Player playing demo.mp4 -->
+      <!-- html5 video element demo.mp4 ko browser mein play karta hai -->
       <video id="main-video-player" playsinline preload="auto">
         <source src="../assets/videos/demo.mp4" type="video/mp4">
         Your browser does not support HTML5 video playback.
       </video>
 
-      <!-- Center Big Play Button -->
+      <!-- pause hone par center mein bada play button -->
       <button id="center-play-btn" class="player-center-btn" type="button" aria-label="Play video">
         ▶
       </button>
 
-      <!-- Custom Overlay Controls -->
+      <!-- video ke upar custom controls ka overlay -->
       <div class="player-overlay">
         <div class="player-top-bar">
           <h2 id="player-movie-title" class="player-movie-title">Interstellar</h2>
@@ -52,12 +52,12 @@
         </div>
 
         <div class="player-bottom-bar">
-          <!-- Progress Bar / Scrubber -->
+          <!-- progress bar current playback position aur seeking ke liye -->
           <div id="progress-container" class="progress-container" aria-label="Video seek bar">
             <div id="progress-filled" class="progress-filled"></div>
           </div>
 
-          <!-- Controls Row -->
+          <!-- play, volume, time aur fullscreen ke controls -->
           <div class="controls-row">
             <div class="controls-left">
               <button id="btn-play-pause" class="ctrl-btn" type="button" aria-label="Play / Pause">
@@ -86,7 +86,7 @@
       </div>
     </div>
 
-    <!-- Movie Details Below Player -->
+    <!-- player ke neeche selected movie ki information -->
     <section class="watch-info">
       <h1 id="watch-title">Interstellar</h1>
       <div class="watch-meta-row">
@@ -102,7 +102,7 @@
     </section>
   </main>
 
-  <!-- Shared JavaScript -->
+  <!-- common js file video ke controls aur dynamic text handle karti hai -->
   <script src="../js/app.js"></script>
 </body>
 </html>

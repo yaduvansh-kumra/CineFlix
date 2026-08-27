@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- movies page mein catalog ko cards ke form mein show karte hain -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,17 +7,17 @@
   <meta name="description" content="Browse movies on CineFlix - Action, Sci-Fi, Drama, Thriller, and more.">
   <title>Movies | CineFlix</title>
 
-  <!-- Google Fonts -->
+  <!-- project ke common fonts import -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS -->
+  <!-- common layout aur components ki styling -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
+  <!-- logo, navigation, search aur theme controls wala header -->
   <header id="main-header" class="primary-header scrolled">
     <div class="header-left">
       <a href="../index.html" class="brand-logo" aria-label="CineFlix Home">
@@ -50,7 +51,7 @@
   </header>
 
   <main class="browse-page">
-    <!-- Movies Hero Banner -->
+    <!-- movies page ka intro banner aur heading -->
     <section class="browse-hero">
       <p class="hero-kicker">CINEMATIC CATALOG</p>
       <h1>FEATURE FILMS &amp; MOVIES</h1>
@@ -59,10 +60,10 @@
       </p>
     </section>
 
-    <!-- Empty search message -->
+    <!-- result na mile to yeh empty state message show hota hai -->
     <p id="search-empty" class="search-empty" hidden>No movies found matching your search term.</p>
 
-    <!-- Movies Catalog Grid -->
+    <!-- movie cards ko responsive grid mein arrange karte hain -->
     <section class="media-section browse-grid-section">
       <div class="section-heading">
         <h2 class="section-title">All Movies (16 Titles)</h2>
