@@ -328,13 +328,14 @@ function initScrollerButtons() {
 // 6. Real-time Search Filtering
 function initSearch() {
   const searchInput = document.querySelector("#movie-search");
-  const mediaCards = document.querySelectorAll(".media-card, .trending-item, .landscape-card");
   const searchEmpty = document.querySelector("#search-empty");
 
   if (!searchInput) return;
 
   searchInput.addEventListener("input", (e) => {
     const query = e.target.value.trim().toLowerCase();
+    // Query the DOM on every search so dynamically rendered My List cards are included.
+    const mediaCards = document.querySelectorAll(".media-card, .trending-item, .landscape-card");
     let matchCount = 0;
 
     mediaCards.forEach((card) => {
@@ -356,62 +357,263 @@ function initSearch() {
 // 7. My List Management with LocalStorage
 function initMyListSystem() {
   const STORAGE_KEY = "cineflix_my_list";
+  const listGrid = document.querySelector("#my-list-grid");
+  const emptyState = document.querySelector("#my-list-empty");
+  const countLabel = document.querySelector("#saved-title-count");
+
+  // Metadata for existing catalogue cards that are not in MOVIES_DATABASE yet.
+  // This keeps every currently saveable title displayable in My List without
+  // changing the shape of the existing localStorage value (an array of titles).
+  const EXTRA_MOVIE_DATA = {
+    "Rebel Station": {
+      title: "Rebel Station", year: "2024", match: "93% Match", rating: "★ 8.3",
+      age: "U/A 13+", quality: "HD", genres: ["Space", "Action"],
+      poster: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=600&q=80"
+    },
+    "Apex Predator": {
+      title: "Apex Predator", year: "2024", match: "92% Match", rating: "★ 8.1",
+      age: "A 18+", quality: "HD", genres: ["Survival", "Thriller"],
+      poster: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef6?auto=format&fit=crop&w=600&q=80"
+    },
+    "Ocean Deep": {
+      title: "Ocean Deep", year: "2024", match: "91% Match", rating: "★ 8.2",
+      age: "All", quality: "4K", genres: ["Docuseries", "Nature"],
+      poster: "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=600&q=80"
+    },
+    "Paper Moons": {
+      title: "Paper Moons", year: "2024", match: "88% Match", rating: "",
+      age: "U", quality: "HD", genres: ["Romance", "Drama"],
+      poster: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80"
+    },
+    "The Blackout": {
+      title: "The Blackout", year: "2024", match: "96% Match", rating: "",
+      age: "A", quality: "HD", genres: ["Trending", "Horror"],
+      poster: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"
+    },
+    "Afterlight": {
+      title: "Afterlight", year: "2024", match: "92% Match", rating: "",
+      age: "U/A 13+", quality: "HD", genres: ["Popular", "Fantasy"],
+      poster: "https://images.unsplash.com/photo-1533613220915-609f661a6fe1?auto=format&fit=crop&w=600&q=80"
+    },
+    "Midnight Run": {
+      title: "Midnight Run", year: "2024", match: "93% Match", rating: "",
+      age: "A", quality: "HD", genres: ["Popular", "Crime"],
+      poster: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80"
+    }
+  };
+
   const getSavedList = () => {
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      if (!Array.isArray(parsed)) return [];
+      // Ignore malformed entries and duplicates while preserving the existing title-array format.
+      return [...new Set(parsed.filter((title) => typeof title === "string" && title.trim() !== ""))];
     } catch {
       return [];
     }
   };
 
   const saveList = (list) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      return true;
+    } catch (error) {
+      console.error("CineFlix could not save My List to localStorage:", error);
+      return false;
+    }
   };
 
-  // Attach click listener for buttons
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".list-button, .btn-card-list");
-    if (!btn) return;
+  const setButtonState = (button, isSaved, title) => {
+    button.classList.toggle("added", isSaved);
+    button.setAttribute("aria-pressed", String(isSaved));
+    button.setAttribute("aria-label", isSaved ? `Remove ${title} from My List` : `Add ${title} to My List`);
 
-    e.preventDefault();
-    e.stopPropagation();
-
-    const title = btn.dataset.title || btn.closest("[data-title]")?.dataset?.title || "Interstellar";
-    let list = getSavedList();
-    const index = list.indexOf(title);
-
-    if (index > -1) {
-      list.splice(index, 1);
-      btn.classList.remove("added");
-      if (btn.classList.contains("list-button")) btn.textContent = "+ My List";
-      if (btn.classList.contains("btn-card-list")) btn.textContent = "+";
+    if (button.classList.contains("list-button")) {
+      button.textContent = isSaved ? "✓ In My List" : "+ My List";
     } else {
-      list.push(title);
-      btn.classList.add("added");
-      if (btn.classList.contains("list-button")) btn.textContent = "✓ In My List";
-      if (btn.classList.contains("btn-card-list")) btn.textContent = "✓";
+      button.textContent = isSaved ? "✓" : "+";
+    }
+  };
+
+  const syncListButtons = (savedList) => {
+    document.querySelectorAll(".list-button, .btn-card-list").forEach((button) => {
+      const title = button.dataset.title || button.closest("[data-title]")?.dataset.title;
+      if (title) setButtonState(button, savedList.includes(title), title);
+    });
+  };
+
+  const createSavedCard = (movie) => {
+    const title = movie.title;
+    const genres = Array.isArray(movie.genres) ? movie.genres : [];
+    const poster = movie.poster || "../assets/images/fallback-poster.svg";
+    const detailsUrl = `../pages/details.html?title=${encodeURIComponent(title)}`;
+    const watchUrl = `../pages/watch.html?title=${encodeURIComponent(title)}`;
+
+    const card = document.createElement("article");
+    card.className = "media-card";
+    card.dataset.title = title;
+    card.dataset.category = `my list ${genres.join(" ")}`.toLowerCase();
+
+    const mediaLink = document.createElement("a");
+    mediaLink.href = detailsUrl;
+    mediaLink.className = "media-link";
+    mediaLink.setAttribute("aria-label", `View details for ${title}`);
+
+    const figure = document.createElement("figure");
+    figure.className = "media-poster";
+
+    if (movie.rating) {
+      const ratingBadge = document.createElement("span");
+      ratingBadge.className = "media-badge-top";
+      ratingBadge.textContent = movie.rating;
+      figure.append(ratingBadge);
     }
 
-    saveList(list);
+    const image = document.createElement("img");
+    image.src = poster;
+    image.alt = `${title} poster`;
+    image.loading = "lazy";
+    image.addEventListener("error", () => {
+      image.src = "../assets/images/fallback-poster.svg";
+    }, { once: true });
+    figure.append(image);
+    mediaLink.append(figure);
+
+    const info = document.createElement("div");
+    info.className = "media-info";
+
+    const heading = document.createElement("h3");
+    heading.className = "media-title";
+    heading.textContent = title;
+    info.append(heading);
+
+    const metadata = document.createElement("div");
+    metadata.className = "media-meta";
+
+    if (movie.match) {
+      const match = document.createElement("span");
+      match.className = "match-score";
+      match.textContent = movie.match;
+      metadata.append(match);
+    }
+
+    if (movie.age) {
+      const age = document.createElement("span");
+      age.className = "age-rating";
+      age.textContent = movie.age;
+      metadata.append(age);
+    }
+
+    if (movie.quality) {
+      const quality = document.createElement("span");
+      quality.className = "hd-badge";
+      quality.textContent = movie.quality;
+      metadata.append(quality);
+    }
+    if (metadata.childElementCount) info.append(metadata);
+
+    if (genres.length) {
+      const genreList = document.createElement("ul");
+      genreList.className = "genre-tags";
+      genres.forEach((genre) => {
+        const item = document.createElement("li");
+        item.textContent = genre;
+        genreList.append(item);
+      });
+      info.append(genreList);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "card-quick-actions";
+
+    const playLink = document.createElement("a");
+    playLink.href = watchUrl;
+    playLink.className = "btn-card-play";
+    playLink.textContent = "▶ Play";
+    actions.append(playLink);
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "btn-card-list added";
+    removeButton.dataset.title = title;
+    removeButton.textContent = "✓";
+    removeButton.setAttribute("aria-pressed", "true");
+    removeButton.setAttribute("aria-label", `Remove ${title} from My List`);
+    actions.append(removeButton);
+
+    // Keep the poster and metadata linked to the details page; keep the button
+    // outside the anchor so the remove action remains valid, accessible HTML.
+    mediaLink.append(info);
+    card.append(mediaLink, actions);
+    return card;
+  };
+
+  const renderSavedTitles = (savedList) => {
+    if (!listGrid) return;
+
+    const savedMovies = savedList
+      .filter((title) => title.trim() !== "")
+      .map((title) => ({
+        ...(MOVIES_DATABASE[title] || EXTRA_MOVIE_DATA[title] || {}),
+        title
+      }))
+      .filter((movie) => Boolean(movie.title));
+
+    listGrid.replaceChildren();
+    savedMovies.forEach((movie) => listGrid.append(createSavedCard(movie)));
+
+    if (countLabel) {
+      const count = savedMovies.length;
+      countLabel.textContent = `${count} ${count === 1 ? "title" : "titles"} saved`;
+    }
+
+    const hasSavedTitles = savedMovies.length > 0;
+    listGrid.hidden = !hasSavedTitles;
+    if (emptyState) emptyState.hidden = hasSavedTitles;
+
+    // Preserve the current search filter after a card is added or removed.
+    const searchInput = document.querySelector("#movie-search");
+    if (searchInput && searchInput.value.trim()) {
+      searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+  };
+
+  // Event delegation handles both existing catalogue cards and newly rendered My List cards.
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".list-button, .btn-card-list");
+    if (!button) return;
+
+    const title = button.dataset.title || button.closest("[data-title]")?.dataset.title;
+    if (!title) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const currentList = getSavedList();
+    const nextList = currentList.includes(title)
+      ? currentList.filter((savedTitle) => savedTitle !== title)
+      : [...currentList, title];
+
+    if (!saveList(nextList)) {
+      window.alert("CineFlix couldn't save your list in this browser. Please check that site storage is enabled.");
+      return;
+    }
+
+    syncListButtons(nextList);
+    renderSavedTitles(nextList);
   });
 
-  // If on My List page, render saved items or update badges
-  const listGrid = document.querySelector("#my-list-grid");
-  if (listGrid) {
-    const saved = getSavedList();
-    if (saved.length > 0) {
-      // Highlight existing items
-      const cards = listGrid.querySelectorAll(".media-card");
-      cards.forEach(card => {
-        const title = card.dataset.title;
-        const btn = card.querySelector(".btn-card-list, .list-button");
-        if (saved.includes(title) && btn) {
-          btn.classList.add("added");
-          btn.textContent = "✓";
-        }
-      });
-    }
-  }
+  // Keep other open CineFlix tabs in sync if the watchlist changes elsewhere.
+  window.addEventListener("storage", (event) => {
+    if (event.key !== STORAGE_KEY && event.key !== null) return;
+    const latestList = getSavedList();
+    syncListButtons(latestList);
+    renderSavedTitles(latestList);
+  });
+
+  const initialList = getSavedList();
+  syncListButtons(initialList);
+  renderSavedTitles(initialList);
 }
 
 // 8. Dynamic Movie Details Page Initialization
@@ -616,3 +818,26 @@ function initWatchPlayer() {
     if (centerPlayBtn) centerPlayBtn.style.display = "flex";
   });
 }
+
+// 6. Theme Toggle Logic
+function initThemeToggle() {
+  const themeToggleBtns = document.querySelectorAll('#theme-toggle, .theme-button');
+  if (!themeToggleBtns.length) return;
+
+  // Retrieve saved theme or default to dark
+  const savedTheme = localStorage.getItem('cineflix-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  themeToggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('cineflix-theme', newTheme);
+    });
+  });
+}
+
+// Initialize theme early to avoid flicker
+initThemeToggle();
