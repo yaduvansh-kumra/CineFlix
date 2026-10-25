@@ -43,8 +43,8 @@
 
   border-radius: 6px;
 
-  background-color: rgba(0, 0, 0, 0.78);
-  color: #ffffff;
+  background-color: var(--header-bg);
+  color: var(--text-color);
 }
 
 .login-card h1 {
@@ -63,21 +63,23 @@
 }
 
 .login-card input[type="email"],
-.login-card input[type="password"] {
+.login-card input[type="password"],
+.login-card input[type="text"] {
   width: 100%;
   padding: 0.95rem;
 
-  border: 1px solid transparent;
+  border: 1px solid var(--border-light);
   border-radius: 4px;
   outline: none;
 
-  background-color: #333333;
-  color: #ffffff;
+  background-color: var(--bg-overlay-light);
+  color: var(--text-color);
 }
 
 .login-card input[type="email"]:focus,
-.login-card input[type="password"]:focus {
-  border-color: #ffffff;
+.login-card input[type="password"]:focus,
+.login-card input[type="text"]:focus {
+  border-color: var(--text-color);
 }
 
 
@@ -93,8 +95,8 @@
   border: 0;
   border-radius: 4px;
 
-  background-color: var(--primary-color);
-  color: #ffffff;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
 
   font-weight: 800;
 
@@ -128,8 +130,12 @@
   gap: 0.35rem;
 }
 
+.login-options a {
+  color: var(--text-dim);
+}
+
 .login-options a:hover {
-  color: #ffffff;
+  color: var(--text-color);
 
   text-decoration: underline;
 }
@@ -137,11 +143,11 @@
 .signup-text {
   margin-top: 3rem;
 
-  color: #b7b7b7;
+  color: var(--text-dim);
 }
 
 .signup-text a {
-  color: #ffffff;
+  color: var(--text-color);
 
   font-weight: 700;
 }
